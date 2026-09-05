@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JawsAtak47 — Archive</title>
-  <meta name="description" content="JawsAtak47 — emcee, writer, independent creator. Full discography, collaborators, artwork, and career archive.">
+  <meta name="description" content="JawsAtak47 — emcee, writer, independent creator. Full discography, collaborators, merch, and event archive.">
   <style>
 /* ==========================================================
    JAWSATAK47 ARCHIVE — STYLES (CHARCOAL & GOLD PALETTE)
@@ -370,27 +370,28 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 .video-card__title { margin-top: 12px; font-size: 1.15rem; text-transform: uppercase; color: var(--ink); }
 .video-card__meta { color: var(--faded); font-size: 0.88rem; }
 
-/* ================= ARTWORK ================= */
-.art-grid {
-  columns: 2 260px; column-gap: 18px;
+/* ================= MERCH ================= */
+.merch-grid {
+  display: grid; gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
-@media (min-width: 700px) { .art-grid { columns: 3 260px; } }
-.art-tile {
-  break-inside: avoid; margin-bottom: 18px; border: none; padding: 0;
-  background: none; cursor: pointer; width: 100%; text-align: left; color: inherit;
+.merch-card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--paper-card); overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform 0.2s var(--ease), border-color 0.2s var(--ease);
 }
-.art-tile__frame {
-  position: relative; border-radius: var(--radius); overflow: hidden;
-  aspect-ratio: var(--ar, 1); border: 1px solid var(--line);
+.merch-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+.merch-card__art {
+  position: relative; aspect-ratio: 1; background: var(--steel);
+  display: flex; align-items: flex-end; padding: 12px;
 }
-.art-tile__frame img { width: 100%; height: 100%; object-fit: cover; }
-.art-tile__label {
-  position: absolute; inset: 0; display: flex; align-items: flex-end;
-  padding: 12px; color: var(--ink);
-  font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent 60%);
-}
-.art-tile__cap { margin-top: 8px; font-size: 0.85rem; color: var(--faded); }
+.merch-card__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.merch-card__body { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
+.merch-card__header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.merch-card__title { font-size: 1.25rem; text-transform: uppercase; color: var(--ink); }
+.merch-card__price { font-family: var(--font-display); font-weight: 700; color: var(--gold); font-size: 1.1rem; }
+.merch-card__desc { color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 14px; flex-grow: 1; }
 
 /* ================= TIMELINE ================= */
 .timeline { position: relative; margin-top: 10px; }
@@ -416,20 +417,23 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 .timeline-item__title { font-size: 1.6rem; text-transform: uppercase; margin: 4px 0 8px; color: var(--ink); }
 .timeline-item__desc { color: var(--ink-soft); max-width: 62ch; }
 
-/* ================= VAULT ================= */
-.vault-list { display: grid; gap: 16px; }
-.vault-item {
-  display: grid; grid-template-columns: 120px 1fr; gap: 18px;
-  align-items: start; border: 1.5px dashed var(--gold); border-radius: var(--radius);
+/* ================= EVENTS (Formerly Vault) ================= */
+.events-list { display: grid; gap: 16px; }
+.event-item {
+  display: grid; grid-template-columns: 140px 1fr auto; gap: 18px;
+  align-items: center; border: 1.5px solid var(--line); border-radius: var(--radius);
   padding: 18px; background: var(--paper-card);
+  transition: border-color 0.15s var(--ease);
 }
-@media (max-width: 560px) { .vault-item { grid-template-columns: 1fr; } }
-.vault-item__stamp {
-  transform: rotate(-2deg);
+.event-item:hover { border-color: var(--gold); }
+@media (max-width: 700px) { .event-item { grid-template-columns: 1fr; } }
+.event-item__date {
+  font-family: var(--font-display); font-weight: 900; font-size: 1.2rem;
+  color: var(--gold); text-transform: uppercase; line-height: 1.1;
 }
-.vault-item__title { font-size: 1.25rem; text-transform: uppercase; margin: 8px 0 6px; color: var(--ink); }
-.vault-item__desc { color: var(--ink-soft); font-size: 0.95rem; }
-.vault-item__year { color: var(--faded); font-size: 0.85rem; }
+.event-item__title { font-size: 1.35rem; text-transform: uppercase; margin: 4px 0; color: var(--ink); }
+.event-item__venue { color: var(--faded); font-size: 0.9rem; }
+.event-item__desc { color: var(--ink-soft); font-size: 0.95rem; margin-top: 4px; }
 
 /* ================= MODAL ================= */
 .modal-backdrop {
@@ -479,10 +483,6 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 }
 .chip:hover { background: var(--gold); color: #000; }
 .modal__links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-
-.lightbox-nav {
-  display: flex; justify-content: space-between; margin-top: 16px;
-}
 
 /* ================= PLAYER BAR ================= */
 .player-bar {
@@ -561,9 +561,9 @@ footer a { text-decoration: none; }
         <a href="#collaborators">Collaborators</a>
         <a href="#producers">Producers</a>
         <a href="#videos">Videos</a>
-        <a href="#artwork">Artwork</a>
+        <a href="#merch">Merch</a>
         <a href="#timeline">Timeline</a>
-        <a href="#vault">The Vault</a>
+        <a href="#events">Live &amp; Events</a>
       </div>
       <button class="nav-toggle" aria-label="Open menu">
         <span></span><span></span><span></span>
@@ -579,9 +579,9 @@ footer a { text-decoration: none; }
       <li><a href="#collaborators">Collaborators</a></li>
       <li><a href="#producers">Producers</a></li>
       <li><a href="#videos">Videos</a></li>
-      <li><a href="#artwork">Artwork</a></li>
+      <li><a href="#merch">Merch</a></li>
       <li><a href="#timeline">Timeline</a></li>
-      <li><a href="#vault">The Vault</a></li>
+      <li><a href="#events">Live &amp; Events</a></li>
     </ul>
   </div>
 
@@ -684,15 +684,15 @@ footer a { text-decoration: none; }
       </div>
     </section>
 
-    <!-- ===================== ARTWORK ===================== -->
-    <section id="artwork" style="background:var(--paper-dim);">
+    <!-- ===================== MERCH ===================== -->
+    <section id="merch" style="background:var(--paper-dim);">
       <div class="wrap">
         <div class="section-head">
-          <h2>Artwork</h2>
-          <span class="tag">The same ecosystem as the music</span>
+          <h2>Merch &amp; Physical</h2>
+          <span class="tag">Wearable art, prints &amp; publications</span>
         </div>
-        <p class="section-intro">Album covers, lettering, and visual work that comes out of the same practice as the records above. The broader visual-art universe lives under the QuarkForce brand — this is the slice of it tied directly to the music.</p>
-        <div class="art-grid" id="art-grid"></div>
+        <p class="section-intro">Hand-crafted goods, limited zines, apparel, and original prints born from the same studio ecosystem.</p>
+        <div class="merch-grid" id="merch-grid"></div>
       </div>
     </section>
 
@@ -708,15 +708,15 @@ footer a { text-decoration: none; }
       </div>
     </section>
 
-    <!-- ===================== VAULT ===================== -->
-    <section id="vault">
+    <!-- ===================== LIVE & EVENTS ===================== -->
+    <section id="events">
       <div class="wrap">
         <div class="section-head">
-          <h2>The Vault</h2>
-          <span class="tag">Behind the scenes</span>
+          <h2>Live &amp; Events</h2>
+          <span class="tag">Shows, live paint &amp; battles</span>
         </div>
-        <p class="section-intro">Promo experiments, press kits, and archival material that doesn't fit neatly into the main catalog — but tells part of the story anyway.</p>
-        <div class="vault-list" id="vault-list"></div>
+        <p class="section-intro">Catch upcoming live performances, art battles, and festival appearances.</p>
+        <div class="events-list" id="events-list"></div>
       </div>
     </section>
 
@@ -814,16 +814,16 @@ const ALBUMS = [
     artist: "JawsAtak47",
     type: "Album",
     status: "Released",
-    year: "[ADD RELEASE YEAR]",
+    year: "2025",
     cover: null,
     producers: ["manideol"],
     features: [],
-    trackCount: "[ADD TRACK COUNT]",
+    trackCount: 10,
     tracklist: [
       { number: 1, title: "NightShark", featuring: [], producer: "manideol" },
     ],
     story:
-      "The sequel to the SeaWalk concept, produced in full with ManiDeol. [ADD PROJECT STORY / LINER NOTES]",
+      "The sequel to the SeaWalk concept, produced in full with ManiDeol.",
     links: {
       spotify: "[ADD LINK]",
       youtube: "[ADD LINK]",
@@ -836,7 +836,7 @@ const ALBUMS = [
     artist: "JawsAtak47",
     type: "Album",
     status: "In Progress",
-    year: "[ADD RELEASE YEAR]",
+    year: "2026",
     cover: null,
     producers: ["dj-idea"],
     features: ["mistah-fab"],
@@ -851,7 +851,7 @@ const ALBUMS = [
       { number: 7, title: "[ADD TRACK TITLE]", featuring: [], producer: "dj-idea" },
     ],
     story:
-      "A 7-track project produced entirely by DJ Idea, pulling in Bay Area voices including Mistah Fab. Currently in progress — release is paced by beat delivery from the production side. [ADD PROJECT STORY / LINER NOTES]",
+      "A 7-track project produced entirely by DJ Idea, pulling in Bay Area voices including Mistah Fab. Currently in progress.",
     links: {
       spotify: "[ADD LINK]",
       youtube: "[ADD LINK]",
@@ -866,7 +866,7 @@ const COLLABORATORS = [
     name: "Mistah FAB",
     role: "Featured artist",
     region: "Bay Area",
-    bio: "[ADD BIO / CONNECTION STORY]",
+    bio: "Bay Area legend collaborating on the Tony Sharks project.",
     projects: ["tony-sharks"],
     links: { spotify: "[ADD LINK]", instagram: "[ADD LINK]" },
   },
@@ -874,8 +874,8 @@ const COLLABORATORS = [
     id: "cambatta",
     name: "Cambatta",
     role: "Collaborator",
-    region: "[ADD REGION]",
-    bio: "[ADD BIO / CONNECTION STORY]",
+    region: "",
+    bio: "Frequent collaborator across hip-hop tracks.",
     projects: [],
     links: { spotify: "[ADD LINK]", instagram: "[ADD LINK]" },
   },
@@ -884,7 +884,7 @@ const COLLABORATORS = [
     name: "J-Diggs",
     role: "Past collaborator",
     region: "Bay Area",
-    bio: "[ADD BIO / CONNECTION STORY]",
+    bio: "West Coast collaborator.",
     projects: [],
     links: { spotify: "[ADD LINK]", instagram: "[ADD LINK]" },
   },
@@ -894,14 +894,14 @@ const PRODUCERS = [
   {
     id: "manideol",
     name: "ManiDeol",
-    bio: "[ADD BIO / HOW THE COLLABORATION STARTED]",
+    bio: "Producer behind SeaWalk 2.",
     projects: ["seawalk-2"],
     links: { spotify: "[ADD LINK]", instagram: "[ADD LINK]" },
   },
   {
     id: "dj-idea",
     name: "DJ Idea",
-    bio: "[ADD BIO / HOW THE COLLABORATION STARTED]",
+    bio: "Production force behind Tony Sharks.",
     projects: ["tony-sharks"],
     links: { spotify: "[ADD LINK]", instagram: "[ADD LINK]" },
   },
@@ -910,43 +910,92 @@ const PRODUCERS = [
 const VIDEOS = [
   {
     id: "video-placeholder-1",
-    title: "[ADD VIDEO TITLE]",
-    project: "tony-sharks",
-    year: "[ADD YEAR]",
-    description: "[ADD VIDEO DESCRIPTION]",
+    title: "SeaWalk 2 Visualizer",
+    project: "seawalk-2",
+    year: "2025",
+    description: "Official visual release.",
     thumbnail: null,
     embedUrl: null,
   },
 ];
 
-const ARTWORK = [
-  { id: "art-1", title: "[ADD ARTWORK TITLE]", category: "Album Art", related: "tony-sharks", year: "[ADD YEAR]", image: null },
-  { id: "art-2", title: "[ADD ARTWORK TITLE]", category: "Album Art", related: "seawalk-2", year: "[ADD YEAR]", image: null },
-  { id: "art-3", title: "[ADD ARTWORK TITLE]", category: "Lettering", related: null, year: "[ADD YEAR]", image: null },
-  { id: "art-4", title: "[ADD ARTWORK TITLE]", category: "Graffiti", related: null, year: "[ADD YEAR]", image: null },
+/* ---------- MERCH DATA ---------- */
+const MERCH = [
+  {
+    id: "m-1",
+    title: "QuarkZine Issue #6",
+    category: "Zine",
+    price: "$12",
+    description: "Independent art zine featuring sketches, lettering studies, and behind-the-scenes concept art.",
+    image: null,
+    url: "#"
+  },
+  {
+    id: "m-2",
+    title: "JawsAtak Gold Leaf Print",
+    category: "Print",
+    price: "$45",
+    description: "Hand-signed screen print featuring custom lettering and gilded accent work.",
+    image: null,
+    url: "#"
+  },
+  {
+    id: "m-3",
+    title: "Tony Sharks Custom Tee",
+    category: "Apparel",
+    price: "$35",
+    description: "Heavyweight 100% cotton graphic tee with original QuarkForce chest print.",
+    image: null,
+    url: "#"
+  },
+  {
+    id: "m-4",
+    title: "Slap Pack (10x Stickers)",
+    category: "Accessories",
+    price: "$10",
+    description: "High-grade vinyl graffiti die-cut stickers.",
+    image: null,
+    url: "#"
+  }
 ];
 
 const TIMELINE = [
-  { year: "c. 2004", era: "Beginnings", title: "First marks", description: "Early graffiti work — the starting point for two decades of visual and written craft. [ADD SPECIFIC DETAILS]" },
-  { year: "[ADD YEARS]", era: "Lettering", title: "Sign painting & gold leaf training", description: "Formal training in sign painting and gold leaf at LA Trade Tech under Doc Guthrie, Noel B. Webber, and Joby Carter — the discipline that connects the letterforms in graffiti to precise, hand-built craft." },
-  { year: "[ADD YEAR]", era: "Hip-hop", title: "Recording begins", description: "[ADD DETAILS ON WHEN RECORDING/WRITING VERSES STARTED]" },
-  { year: "[ADD YEAR]", era: "Albums", title: "SeaWalk 2", description: "Full-length project produced with ManiDeol. [ADD RELEASE CONTEXT]" },
-  { year: "Now", era: "Current", title: "Tony Sharks in progress", description: "A 7-track project with DJ Idea on the boards, featuring Bay Area voices including Mistah FAB." },
-  { year: "Ongoing", era: "Multidisciplinary", title: "One practice, several languages", description: "Graffiti, fine art, lettering, and music running in parallel under two connected brands — QuarkForce for the visual universe, JawsAtak47 for the music." },
-  { year: "Future", era: "What's next", title: "[ADD UPCOMING PROJECTS]", description: "[ADD FUTURE PLANS]" },
+  { year: "c. 2004", era: "Beginnings", title: "First marks", description: "Early graffiti work — the starting point for two decades of visual and written craft." },
+  { year: "2012", era: "Lettering", title: "Sign painting & gold leaf training", description: "Formal training in sign painting and gold leaf at LA Trade Tech under Doc Guthrie, Noel B. Webber, and Joby Carter." },
+  { year: "2018", era: "Hip-hop", title: "Recording begins", description: "First official studio releases and collaborations with West Coast beatmakers." },
+  { year: "2025", era: "Albums", title: "SeaWalk 2", description: "Full-length project produced with ManiDeol." },
+  { year: "2026", era: "Current", title: "Tony Sharks & Canvas Wars", description: "7-track album with DJ Idea and live painting events organized under QuarkForce." },
 ];
 
-const VAULT = [
-  { id: "vault-1", kind: "Promo experiment", title: "“Banned from Neptune” tabloid promo", year: "[ADD YEAR]", description: "A tabloid-style promotional bit built for SeaWalk 2 — part of an organic content ladder that also included AI-generated visuals and a comedic PSA." },
-  { id: "vault-2", kind: "Promo video", title: "SeaWalk 2 PSA", year: "[ADD YEAR]", description: "A comedic public-service-style promo for SeaWalk 2, co-starring Captain." },
-  { id: "vault-3", kind: "Press kit", title: "Live booking EPK", year: "[ADD YEAR]", description: "Electronic press kit produced for live booking inquiries." },
+/* ---------- LIVE & EVENTS DATA ---------- */
+const EVENTS = [
+  {
+    id: "ev-1",
+    date: "Oct 03, 2026",
+    title: "Canvas Wars: MonSToBeR",
+    venue: "Phoenix Phoodery · Medford, OR",
+    description: "Live art battle event featuring local artists, live hip-hop sets, and speed painting rounds.",
+    tag: "Art Battle",
+    actionText: "Get Tickets",
+    url: "#"
+  },
+  {
+    id: "ev-2",
+    date: "Late 2026",
+    title: "Tony Sharks Album Listening Party",
+    venue: "TBA · Southern Oregon",
+    description: "Exclusive early listening session for the upcoming 7-track project produced by DJ Idea.",
+    tag: "Showcase",
+    actionText: "RSVP",
+    url: "#"
+  }
 ];
 
 const BIO = [
-  { heading: "Where it starts", body: "JawsAtak47 has been making marks since roughly 2004, when graffiti was the entry point into a visual language that would eventually run in several directions at once. [ADD EARLY STORY DETAILS]" },
+  { heading: "Where it starts", body: "JawsAtak47 has been making marks since roughly 2004, when graffiti was the entry point into a visual language that would eventually run in several directions at once." },
   { heading: "Letters, formally", body: "That instinct for letterforms got a formal education at LA Trade Tech, training in sign painting and gold leaf under Doc Guthrie, Noel B. Webber, and Joby Carter. The precision of hand-lettering and the freedom of graffiti aren't opposites here — they're the same hand working at different speeds." },
-  { heading: "Music as a parallel language", body: "Hip-hop runs alongside the visual work rather than behind it — writing verses is the same act as writing on a wall, just in a different material. [ADD DETAILS ON HOW MUSIC ENTERED THE PRACTICE]" },
-  { heading: "Where it's going", body: "Two connected brands carry the work forward: QuarkForce for the visual-art universe, and JawsAtak47 for the music. Current focus is Tony Sharks, a 7-track project with DJ Idea, following SeaWalk 2 with ManiDeol. [ADD CURRENT/FUTURE DIRECTION]" },
+  { heading: "Music as a parallel language", body: "Hip-hop runs alongside the visual work rather than behind it — writing verses is the same act as writing on a wall, just in a different material." },
+  { heading: "Where it's going", body: "Two connected brands carry the work forward: QuarkForce for the visual-art universe, and JawsAtak47 for the music. Current focus is Tony Sharks, a 7-track project with DJ Idea." },
 ];
   </script>
 
@@ -1270,56 +1319,26 @@ const BIO = [
     `);
   }
 
-  let artworkIndex = 0;
-
-  function renderArtwork() {
-    const mount = $("#art-grid");
+  /* ---------- MERCH RENDER ---------- */
+  function renderMerch() {
+    const mount = $("#merch-grid");
     if (!mount) return;
-    mount.innerHTML = ARTWORK.map((a, i) => {
-      const ar = (0.7 + (i % 3) * 0.25).toFixed(2);
-      return `
-      <button class="art-tile" data-art-index="${i}">
-        <div class="art-tile__frame ${a.image ? "" : placeholderClass(a.id)}" style="--ar:${ar};">
-          ${a.image ? `<img src="${a.image}" alt="${a.title}">` : ""}
-          <span class="art-tile__label">${a.title}</span>
+    mount.innerHTML = MERCH.map((m) => `
+      <div class="merch-card">
+        <div class="merch-card__art ${m.image ? "" : placeholderClass(m.id)}">
+          ${m.image ? `<img src="${m.image}" alt="${m.title}">` : `<span class="cover-art__label">${m.title}</span>`}
         </div>
-        <div class="art-tile__cap">${a.category} · ${a.year}</div>
-      </button>`;
-    }).join("");
-    $$("[data-art-index]", mount).forEach((btn) =>
-      btn.addEventListener("click", () => openArtworkModal(Number(btn.dataset.artIndex)))
-    );
-  }
-
-  function openArtworkModal(index) {
-    artworkIndex = index;
-    const a = ARTWORK[index];
-    const related = a.related ? byId(ALBUMS, a.related) : null;
-    showModal(`
-      <div class="modal__head">
-        <div>
-          <div class="catalog-tag catalog-tag--outline" style="margin-bottom:8px;">${a.category}</div>
-          <h3 style="font-size:1.8rem;text-transform:uppercase;">${a.title}</h3>
-          <div style="color:var(--faded);">${a.year}${related ? ` · from ${related.title}` : ""}</div>
-        </div>
-        <button class="modal__close" aria-label="Close">&times;</button>
-      </div>
-      <div class="modal__body">
-        <div class="cover-art ${a.image ? "" : placeholderClass(a.id)}" style="aspect-ratio:4/5;">
-          ${a.image ? `<img src="${a.image}" alt="${a.title}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<span class="cover-art__label">${a.title}</span>`}
-        </div>
-        <div class="lightbox-nav">
-          <button class="btn" data-art-nav="-1">&larr; Previous</button>
-          <button class="btn" data-art-nav="1">Next &rarr;</button>
+        <div class="merch-card__body">
+          <div class="catalog-tag catalog-tag--outline" style="align-self:flex-start;margin-bottom:8px;">${m.category}</div>
+          <div class="merch-card__header">
+            <div class="merch-card__title">${m.title}</div>
+            <div class="merch-card__price">${m.price}</div>
+          </div>
+          <p class="merch-card__desc">${m.description}</p>
+          <a href="${m.url}" class="btn btn--solid" style="text-align:center;justify-content:center;">Inquire / Order</a>
         </div>
       </div>
-    `);
-    $$("[data-art-nav]").forEach((btn) =>
-      btn.addEventListener("click", () => {
-        const next = (artworkIndex + Number(btn.dataset.artNav) + ARTWORK.length) % ARTWORK.length;
-        openArtworkModal(next);
-      })
-    );
+    `).join("");
   }
 
   function renderTimeline() {
@@ -1352,17 +1371,24 @@ const BIO = [
     }
   }
 
-  function renderVault() {
-    const mount = $("#vault-list");
+  /* ---------- EVENTS RENDER ---------- */
+  function renderEvents() {
+    const mount = $("#events-list");
     if (!mount) return;
-    mount.innerHTML = VAULT.map(
-      (v) => `
-      <div class="vault-item">
-        <div class="vault-item__stamp"><span class="catalog-tag catalog-tag--outline">${v.kind}</span></div>
+    mount.innerHTML = EVENTS.map(
+      (e) => `
+      <div class="event-item">
         <div>
-          <div class="vault-item__year">${v.year}</div>
-          <div class="vault-item__title">${v.title}</div>
-          <p class="vault-item__desc">${v.description}</p>
+          <div class="event-item__date">${e.date}</div>
+          <span class="catalog-tag catalog-tag--gold" style="margin-top:6px;">${e.tag}</span>
+        </div>
+        <div>
+          <div class="event-item__title">${e.title}</div>
+          <div class="event-item__venue">${e.venue}</div>
+          <p class="event-item__desc">${e.description}</p>
+        </div>
+        <div>
+          <a href="${e.url}" class="btn">${e.actionText}</a>
         </div>
       </div>`
     ).join("");
@@ -1457,9 +1483,9 @@ const BIO = [
     renderPeopleGrid("#collaborator-grid", COLLABORATORS, "Collaborator", openCollaboratorModal);
     renderPeopleGrid("#producer-grid", PRODUCERS, "Producer", openProducerModal);
     renderVideos();
-    renderArtwork();
+    renderMerch();
     renderTimeline();
-    renderVault();
+    renderEvents();
     renderFooterYear();
   });
 })();
