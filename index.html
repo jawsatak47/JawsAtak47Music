@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JawsAtak47 — Archive</title>
+  <meta name="description" content="JawsAtak47 — emcee, writer, independent creator. Full discography, collaborators, artwork, and career archive.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="site-nav">
+    <div class="site-nav__bar">
+      <a href="#top" class="wordmark">JAWS<span>ATAK47</span></a>
+      <div class="site-nav__links">
+        <a href="#story">Story</a>
+        <a href="#discography">Discography</a>
+        <a href="#collaborators">Collaborators</a>
+        <a href="#producers">Producers</a>
+        <a href="#videos">Videos</a>
+        <a href="#artwork">Artwork</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#vault">The Vault</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Site menu">
+    <button class="mobile-menu__close" aria-label="Close menu">&times;</button>
+    <ul>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#discography">Discography</a></li>
+      <li><a href="#collaborators">Collaborators</a></li>
+      <li><a href="#producers">Producers</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#artwork">Artwork</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#vault">The Vault</a></li>
+    </ul>
+  </div>
+
+  <main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <header class="hero">
+      <div class="wrap">
+        <div>
+          <h1 class="hero__title">JAWS<br><em>ATAK47</em></h1>
+          <p class="hero__tagline" id="hero-tagline"></p>
+          <p class="hero__statement" id="hero-statement"></p>
+          <div class="hero__ctas">
+            <a href="#discography" class="btn btn--solid">Enter the discography</a>
+            <a href="#story" class="btn">Read the story</a>
+          </div>
+        </div>
+        <div class="now-spinning" id="now-spinning" aria-live="polite"></div>
+      </div>
+    </header>
+
+    <!-- ===================== STORY ===================== -->
+    <section id="story">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Story</h2>
+          <span class="tag">Graffiti → Lettering → Fine Art → Music</span>
+        </div>
+        <p class="section-intro">The short version: one hand, several materials. The long version is below — and it's a living document, filled in as more of the history gets written down.</p>
+        <div class="bio-chapters" id="bio-chapters"></div>
+        <div class="craft-line">
+          <span class="catalog-tag catalog-tag--outline">Graffiti</span>
+          <span class="catalog-tag catalog-tag--outline">Sign Painting</span>
+          <span class="catalog-tag catalog-tag--outline">Gold Leaf</span>
+          <span class="catalog-tag catalog-tag--outline">Fine Art</span>
+          <span class="catalog-tag catalog-tag--outline">Emceeing</span>
+          <span class="catalog-tag catalog-tag--outline">Production</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DISCOGRAPHY ===================== -->
+    <section id="discography" style="background:var(--paper-dim);">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Discography</h2>
+          <span class="tag">The catalog, in full</span>
+        </div>
+        <p class="section-intro">Every project gets its own record here — cover art, credits, tracklist, and the story behind it. Click any card to open it up.</p>
+        <div class="discog-controls">
+          <div class="filter-group" role="group" aria-label="Filter discography by type">
+            <button class="filter-btn is-active" data-filter="ALL">All</button>
+            <button class="filter-btn" data-filter="ALBUM">Albums</button>
+            <button class="filter-btn" data-filter="EP">EPs</button>
+            <button class="filter-btn" data-filter="SINGLE">Singles</button>
+            <button class="filter-btn" data-filter="COLLABORATION">Collaborations</button>
+          </div>
+          <div class="search-field">
+            <label for="discog-search" class="visually-hidden">Search discography</label>
+            <input type="search" id="discog-search" placeholder="Search by title, producer, or feature">
+          </div>
+        </div>
+        <div class="album-grid" id="album-grid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== COLLABORATORS ===================== -->
+    <section id="collaborators">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Collaborators</h2>
+          <span class="tag">Voices on the records</span>
+        </div>
+        <p class="section-intro">Featured artists and guest verses across the catalog. Click a name to see what you've made together.</p>
+        <div class="people-grid" id="collaborator-grid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== PRODUCERS ===================== -->
+    <section id="producers" style="background:var(--paper-dim);">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Producers</h2>
+          <span class="tag">The other half of the sound</span>
+        </div>
+        <p class="section-intro">The beatmakers behind each project.</p>
+        <div class="people-grid" id="producer-grid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== VIDEOS ===================== -->
+    <section id="videos">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Videos</h2>
+          <span class="tag">Visuals</span>
+        </div>
+        <p class="section-intro">Music videos and visual releases, archived as they drop.</p>
+        <div class="video-grid" id="video-grid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== ARTWORK ===================== -->
+    <section id="artwork" style="background:var(--paper-dim);">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Artwork</h2>
+          <span class="tag">The same ecosystem as the music</span>
+        </div>
+        <p class="section-intro">Album covers, lettering, and visual work that comes out of the same practice as the records above. The broader visual-art universe lives under the QuarkForce brand — this is the slice of it tied directly to the music.</p>
+        <div class="art-grid" id="art-grid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== TIMELINE ===================== -->
+    <section id="timeline" class="section--dark">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Timeline</h2>
+          <span class="tag">Two decades, one throughline</span>
+        </div>
+        <p class="section-intro">A career built across mediums, laid out in order.</p>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <!-- ===================== VAULT ===================== -->
+    <section id="vault">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>The Vault</h2>
+          <span class="tag">Behind the scenes</span>
+        </div>
+        <p class="section-intro">Promo experiments, press kits, and archival material that doesn't fit neatly into the main catalog — but tells part of the story anyway.</p>
+        <div class="vault-list" id="vault-list"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h4>JawsAtak47</h4>
+          <p style="color:rgba(239,234,217,0.8);max-width:40ch;">Emcee, writer, and independent creator. Part of a wider creative practice that also runs under the QuarkForce visual-art brand.</p>
+        </div>
+        <div>
+          <h4>Listen &amp; follow</h4>
+          <div class="footer-links" id="footer-social">
+            <a href="#" data-social="spotify">Spotify</a>
+            <a href="#" data-social="instagram">Instagram</a>
+            <a href="#" data-social="youtube">YouTube</a>
+            <a href="#" data-social="bandcamp">Bandcamp</a>
+          </div>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <div class="footer-links" id="footer-contact">
+            <a href="#" id="footer-booking">Booking &amp; inquiries</a>
+            <a href="#" id="footer-quarkforce">QuarkForce (visual art)</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year"></span> JawsAtak47. Archive maintained and expanded continuously.</span>
+        <span>Built to grow — see js/data.js to add new work.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== PLAYER BAR ===================== -->
+  <div class="player-bar" id="player-bar">
+    <div class="player-bar__inner">
+      <div class="player-bar__eq" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="player-bar__info">
+        <div class="player-bar__track" id="player-track">—</div>
+        <div class="player-bar__project" id="player-project">—</div>
+      </div>
+      <div class="player-bar__note">Preview audio not yet connected</div>
+      <div class="player-bar__controls">
+        <button id="player-play" class="player-bar__play" aria-label="Pause">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL ===================== -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" id="modal" tabindex="-1" role="dialog" aria-modal="true"></div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
