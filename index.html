@@ -7,31 +7,36 @@
   <meta name="description" content="JawsAtak47 — emcee, writer, independent creator. Full discography, collaborators, artwork, and career archive.">
   <style>
 /* ==========================================================
-   JAWSATAK47 ARCHIVE — STYLES
-   Design tokens live at the top. Change a value here and it
-   propagates everywhere the token is used.
+   JAWSATAK47 ARCHIVE — STYLES (CHARCOAL & GOLD PALETTE)
    ========================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap');
 
 :root {
   /* ---- palette ----
-     paper: aged record-sleeve cream
-     ink:   warm near-black, the base "wall" color
-     steel: dusk blue-grey, night-driving color
-     brick: spray-paint red-orange, the one accent
-     gold:  gold-leaf accent, ties to the sign-painting craft
-     faded: muted warm grey for secondary text on paper       */
-  --paper: #efead9;
-  --paper-dim: #e2dbc3;
-  --ink: #19140f;
-  --ink-soft: #2a231b;
-  --steel: #2c3b4c;
-  --brick: #b23a22;
-  --gold: #b8922e;
-  --faded: #8f8672;
-  --line: rgba(25, 20, 15, 0.14);
-  --line-on-ink: rgba(239, 234, 217, 0.16);
+     paper: deep matte charcoal canvas
+     paper-dim: elevated dark slate card background
+     ink: primary cream/off-white text
+     ink-soft: muted warm ivory for body & secondary copy
+     steel: medium slate grey for secondary cards/frames
+     gold: rich burnished gold accent
+     gold-bright: vibrant gold for focus states and key highlights
+     faded: muted slate grey for subtle metadata
+     line: dark subtle borders
+     line-on-ink: soft glowing gold/white dividers  */
+  --paper: #141618;
+  --paper-dim: #1c1f22;
+  --paper-card: #23272b;
+  --ink: #f4f1ea;
+  --ink-soft: #d8d3c5;
+  --steel: #343a40;
+  --gold: #d4af37;
+  --gold-bright: #e5c158;
+  --brick: #d4af37; /* mapped to gold for structural consistency */
+  --faded: #9a9ea4;
+  --line: rgba(212, 175, 55, 0.2);
+  --line-subtle: rgba(255, 255, 255, 0.1);
+  --line-on-ink: rgba(212, 175, 55, 0.3);
 
   --font-display: "Big Shoulders Display", sans-serif;
   --font-body: "Source Serif 4", serif;
@@ -67,25 +72,26 @@ ul { margin: 0; padding: 0; list-style: none; }
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap;
 }
-:focus-visible { outline: 3px solid var(--brick); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
 
 /* ---------- texture ----------
-   a faint paper grain via layered gradients — no image asset needed */
+   a faint grain grid overlay for dark mode depth */
 .grain {
   position: fixed; inset: 0; pointer-events: none; z-index: 2;
-  opacity: 0.05; mix-blend-mode: multiply;
+  opacity: 0.15; mix-blend-mode: overlay;
   background-image:
-    repeating-linear-gradient(0deg, #000 0 1px, transparent 1px 3px),
-    repeating-linear-gradient(90deg, #000 0 1px, transparent 1px 3px);
+    repeating-linear-gradient(0deg, #fff 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, #fff 0 1px, transparent 1px 3px);
 }
 
 /* ---------- top nav ---------- */
 .site-nav {
   position: sticky; top: 0; z-index: 50;
-  background: var(--paper);
-  border-bottom: 2px solid var(--ink);
+  background: rgba(20, 22, 24, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--gold);
 }
 .site-nav__bar {
   display: flex; align-items: center; justify-content: space-between;
@@ -100,7 +106,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--ink);
   display: flex; align-items: baseline; gap: 6px;
 }
-.wordmark span { color: var(--brick); }
+.wordmark span { color: var(--gold); }
 .site-nav__links {
   display: none;
   gap: clamp(14px, 2vw, 26px);
@@ -117,18 +123,18 @@ ul { margin: 0; padding: 0; list-style: none; }
   transition: border-color 0.15s var(--ease), color 0.15s var(--ease);
 }
 .site-nav__links a:hover,
-.site-nav__links a:focus-visible { color: var(--brick); border-color: var(--brick); }
+.site-nav__links a:focus-visible { color: var(--gold); border-color: var(--gold); }
 @media (min-width: 900px) { .site-nav__links { display: flex; } }
 
 .nav-toggle {
   display: inline-flex; flex-direction: column; gap: 5px;
   background: none; border: none; cursor: pointer; padding: 6px;
 }
-.nav-toggle span { width: 26px; height: 2px; background: var(--ink); display: block; }
+.nav-toggle span { width: 26px; height: 2px; background: var(--gold); display: block; }
 @media (min-width: 900px) { .nav-toggle { display: none; } }
 
 .mobile-menu {
-  position: fixed; inset: 0; background: var(--ink); color: var(--paper);
+  position: fixed; inset: 0; background: var(--paper); color: var(--ink);
   z-index: 60; display: flex; flex-direction: column;
   padding: 24px clamp(20px, 6vw, 48px);
   transform: translateY(-100%);
@@ -136,12 +142,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .mobile-menu.is-open { transform: translateY(0); }
 .mobile-menu__close {
-  align-self: flex-end; background: none; border: none; color: var(--paper);
+  align-self: flex-end; background: none; border: none; color: var(--gold);
   font-size: 2rem; line-height: 1; cursor: pointer; padding: 8px;
 }
 .mobile-menu ul { margin-top: 20px; display: flex; flex-direction: column; gap: 4px; }
 .mobile-menu a {
-  text-decoration: none; color: var(--paper);
+  text-decoration: none; color: var(--ink);
   font-family: var(--font-display); font-weight: 700;
   font-size: clamp(1.8rem, 8vw, 2.6rem);
   padding: 10px 0; border-bottom: 1px solid var(--line-on-ink);
@@ -152,37 +158,38 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 .section-head {
   display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
   gap: 16px; margin-bottom: clamp(28px, 4vw, 48px);
-  border-bottom: 2px solid var(--ink); padding-bottom: 14px;
+  border-bottom: 2px solid var(--gold); padding-bottom: 14px;
 }
 .section-head h2 {
   font-size: clamp(2.2rem, 6vw, 3.6rem);
   font-weight: 900;
   text-transform: uppercase;
+  color: var(--ink);
 }
 .section-head .tag {
   font-family: var(--font-display); font-weight: 600; font-size: 0.85rem;
-  letter-spacing: 0.08em; color: var(--faded);
+  letter-spacing: 0.08em; color: var(--gold);
 }
 .section-intro {
   max-width: 62ch; color: var(--ink-soft); margin-bottom: clamp(24px, 4vw, 40px);
 }
-.section--dark { background: var(--ink); color: var(--paper); }
-.section--dark .section-head { border-color: var(--paper); }
-.section--dark .section-intro { color: rgba(239, 234, 217, 0.75); }
+.section--dark { background: #0c0d0e; color: var(--ink); }
+.section--dark .section-head { border-color: var(--gold); }
+.section--dark .section-intro { color: var(--ink-soft); }
 
 /* ---------- catalog tag (placard) ---------- */
 .catalog-tag {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--font-display); font-weight: 700; font-size: 0.72rem;
   letter-spacing: 0.06em; text-transform: uppercase;
-  background: var(--ink); color: var(--paper);
+  background: var(--gold); color: #000;
   padding: 3px 8px; border-radius: 2px;
 }
 .catalog-tag--outline {
-  background: transparent; color: var(--ink); border: 1.5px solid var(--ink);
+  background: transparent; color: var(--gold); border: 1.5px solid var(--gold);
 }
-.catalog-tag--brick { background: var(--brick); color: var(--paper); }
-.catalog-tag--gold { background: var(--gold); color: var(--ink); }
+.catalog-tag--brick { background: var(--gold); color: #000; }
+.catalog-tag--gold { background: var(--gold-bright); color: #000; }
 
 /* ================= HERO ================= */
 .hero { padding-top: clamp(48px, 8vw, 88px); }
@@ -198,14 +205,15 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.01em;
+  color: var(--ink);
 }
 .hero__title em {
-  font-style: normal; color: var(--brick);
+  font-style: normal; color: var(--gold);
 }
 .hero__tagline {
   font-family: var(--font-display); font-weight: 600;
   font-size: clamp(1.1rem, 2.4vw, 1.4rem);
-  margin: 10px 0 18px; color: var(--ink-soft);
+  margin: 10px 0 18px; color: var(--gold);
 }
 .hero__statement { max-width: 52ch; font-size: 1.1rem; color: var(--ink-soft); }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
@@ -215,28 +223,29 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
   font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
   text-decoration: none; cursor: pointer;
   padding: 13px 22px; border-radius: var(--radius);
-  border: 2px solid var(--ink); background: transparent; color: var(--ink);
+  border: 2px solid var(--gold); background: transparent; color: var(--gold);
   transition: transform 0.15s var(--ease), background 0.15s var(--ease), color 0.15s var(--ease);
 }
-.btn:hover { transform: translateY(-2px); }
-.btn--solid { background: var(--ink); color: var(--paper); }
-.btn--solid:hover { background: var(--brick); border-color: var(--brick); }
-.btn--brick { background: var(--brick); border-color: var(--brick); color: var(--paper); }
-.btn--ghost.on-dark { border-color: var(--paper); color: var(--paper); }
+.btn:hover { transform: translateY(-2px); background: var(--gold); color: #000; }
+.btn--solid { background: var(--gold); color: #000; border-color: var(--gold); }
+.btn--solid:hover { background: var(--gold-bright); border-color: var(--gold-bright); color: #000; }
+.btn--brick { background: var(--gold); border-color: var(--gold); color: #000; }
+.btn--ghost.on-dark { border-color: var(--ink); color: var(--ink); }
 
 /* now-spinning panel */
 .now-spinning {
-  border: 2px solid var(--ink); background: var(--paper-dim);
+  border: 2px solid var(--gold); background: var(--paper-card);
   padding: 20px; border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 .now-spinning__label {
   font-family: var(--font-display); font-weight: 700; font-size: 0.8rem;
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--brick);
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
   margin-bottom: 10px; display: block;
 }
 .now-spinning__body { display: flex; gap: 16px; align-items: center; }
 .now-spinning__art { width: 96px; height: 96px; flex: none; border-radius: 2px; }
-.now-spinning__title { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; }
+.now-spinning__title { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: var(--ink); }
 .now-spinning__meta { color: var(--faded); font-size: 0.92rem; margin-top: 2px; }
 .now-spinning__cta { margin-top: 14px; }
 
@@ -245,31 +254,31 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
   position: relative; overflow: hidden;
   display: flex; align-items: flex-end;
   background: var(--steel);
-  color: var(--paper);
+  color: var(--ink);
   aspect-ratio: 1 / 1;
 }
 .cover-art::before {
   content: ""; position: absolute; inset: 0;
   background:
-    repeating-linear-gradient(135deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 14px);
+    repeating-linear-gradient(135deg, rgba(212,175,55,0.1) 0 2px, transparent 2px 14px);
 }
 .cover-art__label {
   position: relative; padding: 12px; width: 100%;
   font-family: var(--font-display); font-weight: 900;
   line-height: 0.92; text-transform: uppercase;
   font-size: clamp(1rem, 3.4cqw, 1.6rem);
-  text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
-.cover-art--brick { background: var(--brick); }
-.cover-art--gold { background: var(--gold); color: var(--ink); }
-.cover-art--ink { background: var(--ink); }
+.cover-art--brick { background: var(--paper-card); border: 1px solid var(--gold); color: var(--gold); }
+.cover-art--gold { background: var(--gold); color: #000; }
+.cover-art--ink { background: #000; border: 1px solid var(--steel); color: var(--ink); }
 
 /* ================= STORY ================= */
 .bio-chapters { display: grid; gap: 28px; }
 @media (min-width: 760px) { .bio-chapters { grid-template-columns: repeat(2, 1fr); gap: 32px 48px; } }
-.bio-chapter { border-top: 2px solid var(--ink); padding-top: 14px; }
+.bio-chapter { border-top: 2px solid var(--line); padding-top: 14px; }
 .bio-chapter h3 {
-  font-size: 1.5rem; text-transform: uppercase; margin-bottom: 8px;
+  font-size: 1.5rem; text-transform: uppercase; margin-bottom: 8px; color: var(--gold);
 }
 .bio-chapter p { color: var(--ink-soft); }
 
@@ -287,17 +296,17 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 .filter-btn {
   font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
   letter-spacing: 0.04em; text-transform: uppercase;
-  background: transparent; border: 1.5px solid var(--ink); color: var(--ink);
+  background: transparent; border: 1.5px solid var(--gold); color: var(--gold);
   padding: 7px 14px; border-radius: 999px; cursor: pointer;
   transition: background 0.15s var(--ease), color 0.15s var(--ease);
 }
-.filter-btn:hover { background: var(--ink); color: var(--paper); }
-.filter-btn.is-active { background: var(--brick); border-color: var(--brick); color: var(--paper); }
+.filter-btn:hover { background: rgba(212, 175, 55, 0.2); color: var(--ink); }
+.filter-btn.is-active { background: var(--gold); border-color: var(--gold); color: #000; }
 
 .search-field { position: relative; width: min(280px, 100%); }
 .search-field input {
-  width: 100%; padding: 9px 14px; border: 1.5px solid var(--ink);
-  border-radius: 999px; background: transparent; color: var(--ink);
+  width: 100%; padding: 9px 14px; border: 1.5px solid var(--gold);
+  border-radius: 999px; background: var(--paper-card); color: var(--ink);
   font-family: var(--font-body); font-size: 0.95rem;
 }
 .search-field input::placeholder { color: var(--faded); }
@@ -315,7 +324,7 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 .album-card:focus-visible .album-card__art { transform: translateY(-4px); }
 .album-card__meta { padding-top: 12px; }
 .album-card__status { margin-bottom: 6px; }
-.album-card__title { font-size: 1.3rem; text-transform: uppercase; }
+.album-card__title { font-size: 1.3rem; text-transform: uppercase; color: var(--ink); }
 .album-card__sub { color: var(--faded); font-size: 0.9rem; margin-top: 3px; }
 
 .empty-state {
@@ -329,15 +338,15 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 .person-card {
-  border: 2px solid var(--ink); border-radius: var(--radius);
-  padding: 18px; background: var(--paper-dim);
+  border: 1.5px solid var(--line); border-radius: var(--radius);
+  padding: 18px; background: var(--paper-card);
   cursor: pointer; text-align: left; color: inherit;
-  transition: background 0.15s var(--ease), transform 0.15s var(--ease);
+  transition: background 0.15s var(--ease), border-color 0.15s var(--ease), transform 0.15s var(--ease);
 }
-.person-card:hover, .person-card:focus-visible { background: var(--ink); color: var(--paper); transform: translateY(-3px); }
-.person-card__name { font-size: 1.35rem; text-transform: uppercase; margin-bottom: 6px; }
-.person-card__role { font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; color: var(--brick); }
-.person-card:hover .person-card__role, .person-card:focus-visible .person-card__role { color: var(--gold); }
+.person-card:hover, .person-card:focus-visible { border-color: var(--gold); background: #2a2f34; color: var(--ink); transform: translateY(-3px); }
+.person-card__name { font-size: 1.35rem; text-transform: uppercase; margin-bottom: 6px; color: var(--ink); }
+.person-card__role { font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; color: var(--gold); }
+.person-card:hover .person-card__role, .person-card:focus-visible .person-card__role { color: var(--gold-bright); }
 
 /* ================= VIDEOS ================= */
 .video-grid {
@@ -348,17 +357,17 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 .video-thumb {
   position: relative; aspect-ratio: 16/9; background: var(--steel);
   display: flex; align-items: center; justify-content: center;
-  border-radius: var(--radius); overflow: hidden;
+  border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line);
 }
 .video-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .video-thumb__play {
   width: 56px; height: 56px; border-radius: 50%;
-  background: var(--paper); display: flex; align-items: center; justify-content: center;
+  background: var(--gold); display: flex; align-items: center; justify-content: center;
   transition: transform 0.15s var(--ease);
 }
-.video-card:hover .video-thumb__play { transform: scale(1.08); }
-.video-thumb__play svg { width: 20px; height: 20px; fill: var(--ink); margin-left: 3px; }
-.video-card__title { margin-top: 12px; font-size: 1.15rem; text-transform: uppercase; }
+.video-card:hover .video-thumb__play { transform: scale(1.08); background: var(--gold-bright); }
+.video-thumb__play svg { width: 20px; height: 20px; fill: #000; margin-left: 3px; }
+.video-card__title { margin-top: 12px; font-size: 1.15rem; text-transform: uppercase; color: var(--ink); }
 .video-card__meta { color: var(--faded); font-size: 0.88rem; }
 
 /* ================= ARTWORK ================= */
@@ -372,14 +381,14 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 }
 .art-tile__frame {
   position: relative; border-radius: var(--radius); overflow: hidden;
-  aspect-ratio: var(--ar, 1);
+  aspect-ratio: var(--ar, 1); border: 1px solid var(--line);
 }
 .art-tile__frame img { width: 100%; height: 100%; object-fit: cover; }
 .art-tile__label {
   position: absolute; inset: 0; display: flex; align-items: flex-end;
-  padding: 12px; color: var(--paper);
+  padding: 12px; color: var(--ink);
   font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
-  background: linear-gradient(to top, rgba(0,0,0,0.55), transparent 55%);
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent 60%);
 }
 .art-tile__cap { margin-top: 8px; font-size: 0.85rem; color: var(--faded); }
 
@@ -387,7 +396,7 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 .timeline { position: relative; margin-top: 10px; }
 .timeline::before {
   content: ""; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px;
-  background: var(--paper); opacity: 0.3;
+  background: var(--gold); opacity: 0.4;
 }
 .timeline-item {
   position: relative; padding-left: 40px; margin-bottom: clamp(30px, 4vw, 46px);
@@ -398,77 +407,77 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 .timeline-item::before {
   content: ""; position: absolute; left: 4px; top: 6px;
   width: 14px; height: 14px; border-radius: 50%;
-  background: var(--brick); border: 2px solid var(--paper);
+  background: var(--gold); border: 2px solid var(--paper);
 }
 .timeline-item__year {
   font-family: var(--font-display); font-weight: 700; color: var(--gold);
   font-size: 0.95rem; letter-spacing: 0.04em; text-transform: uppercase;
 }
-.timeline-item__title { font-size: 1.6rem; text-transform: uppercase; margin: 4px 0 8px; }
-.timeline-item__desc { color: rgba(239, 234, 217, 0.8); max-width: 62ch; }
+.timeline-item__title { font-size: 1.6rem; text-transform: uppercase; margin: 4px 0 8px; color: var(--ink); }
+.timeline-item__desc { color: var(--ink-soft); max-width: 62ch; }
 
 /* ================= VAULT ================= */
 .vault-list { display: grid; gap: 16px; }
 .vault-item {
   display: grid; grid-template-columns: 120px 1fr; gap: 18px;
-  align-items: start; border: 1.5px dashed var(--ink); border-radius: var(--radius);
-  padding: 18px; background: var(--paper-dim);
+  align-items: start; border: 1.5px dashed var(--gold); border-radius: var(--radius);
+  padding: 18px; background: var(--paper-card);
 }
 @media (max-width: 560px) { .vault-item { grid-template-columns: 1fr; } }
 .vault-item__stamp {
   transform: rotate(-2deg);
 }
-.vault-item__title { font-size: 1.25rem; text-transform: uppercase; margin: 8px 0 6px; }
+.vault-item__title { font-size: 1.25rem; text-transform: uppercase; margin: 8px 0 6px; color: var(--ink); }
 .vault-item__desc { color: var(--ink-soft); font-size: 0.95rem; }
 .vault-item__year { color: var(--faded); font-size: 0.85rem; }
 
 /* ================= MODAL ================= */
 .modal-backdrop {
-  position: fixed; inset: 0; background: rgba(20, 16, 12, 0.72);
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
   display: none; align-items: flex-start; justify-content: center;
   padding: clamp(16px, 4vw, 60px) 16px; z-index: 100; overflow-y: auto;
 }
 .modal-backdrop.is-open { display: flex; }
 .modal {
-  background: var(--paper); color: var(--ink);
+  background: var(--paper-card); color: var(--ink);
   max-width: 760px; width: 100%; border-radius: 4px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--gold);
   animation: modal-in 0.25s var(--ease);
 }
 @keyframes modal-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 .modal__head {
   display: flex; justify-content: space-between; align-items: flex-start;
-  padding: 20px 22px; border-bottom: 2px solid var(--ink); gap: 14px;
+  padding: 20px 22px; border-bottom: 1.5px solid var(--line); gap: 14px;
 }
 .modal__close {
   background: none; border: none; font-size: 1.8rem; line-height: 1;
-  cursor: pointer; color: var(--ink); padding: 4px 8px;
+  cursor: pointer; color: var(--gold); padding: 4px 8px;
 }
 .modal__body { padding: 22px; }
 .modal__section { margin-top: 22px; }
 .modal__section h4 {
   font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em;
-  color: var(--faded); margin-bottom: 10px; font-family: var(--font-display); font-weight: 700;
+  color: var(--gold); margin-bottom: 10px; font-family: var(--font-display); font-weight: 700;
 }
-.tracklist { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.tracklist { display: grid; gap: 0; border-top: 1px solid var(--line-subtle); }
 .track-row {
   display: grid; grid-template-columns: 32px 1fr auto; gap: 10px; align-items: center;
-  padding: 10px 4px; border-bottom: 1px solid var(--line);
+  padding: 10px 4px; border-bottom: 1px solid var(--line-subtle);
   background: none; border-left: none; border-right: none; border-top: none;
   cursor: pointer; text-align: left; width: 100%; color: inherit; font-family: var(--font-body);
 }
-.track-row:hover { background: var(--paper-dim); }
-.track-row__num { font-family: var(--font-display); font-weight: 700; color: var(--faded); }
-.track-row__title { font-weight: 600; }
+.track-row:hover { background: #2d3238; }
+.track-row__num { font-family: var(--font-display); font-weight: 700; color: var(--gold); }
+.track-row__title { font-weight: 600; color: var(--ink); }
 .track-row__feat { color: var(--faded); font-size: 0.85rem; }
-.track-row__play { width: 22px; height: 22px; }
+.track-row__play { width: 22px; height: 22px; color: var(--gold); }
 .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
   font-family: var(--font-display); font-weight: 600; font-size: 0.85rem;
-  border: 1.5px solid var(--ink); border-radius: 999px; padding: 5px 12px;
-  background: none; cursor: pointer; color: inherit;
+  border: 1.5px solid var(--gold); border-radius: 999px; padding: 5px 12px;
+  background: none; cursor: pointer; color: var(--gold);
 }
-.chip:hover { background: var(--ink); color: var(--paper); }
+.chip:hover { background: var(--gold); color: #000; }
 .modal__links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 
 .lightbox-nav {
@@ -478,8 +487,8 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 /* ================= PLAYER BAR ================= */
 .player-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 80;
-  background: var(--ink); color: var(--paper);
-  border-top: 2px solid var(--brick);
+  background: #0d0f10; color: var(--ink);
+  border-top: 2px solid var(--gold);
   transform: translateY(100%);
   transition: transform 0.3s var(--ease);
 }
@@ -499,31 +508,31 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 .player-bar.is-paused .player-bar__eq span { animation-play-state: paused; }
 @keyframes eq { 0%, 100% { height: 25%; } 50% { height: 100%; } }
 .player-bar__info { flex: 1; min-width: 0; }
-.player-bar__track { font-family: var(--font-display); font-weight: 700; font-size: 0.98rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.player-bar__project { font-size: 0.8rem; color: var(--faded); }
+.player-bar__track { font-family: var(--font-display); font-weight: 700; font-size: 0.98rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--ink); }
+.player-bar__project { font-size: 0.8rem; color: var(--gold); }
 .player-bar__note { font-size: 0.72rem; color: var(--faded); display: none; }
 @media (min-width: 640px) { .player-bar__note { display: block; } }
 .player-bar__controls { display: flex; align-items: center; gap: 10px; flex: none; }
 .player-bar__controls button {
-  background: none; border: none; color: var(--paper); cursor: pointer; padding: 6px;
+  background: none; border: none; color: var(--gold); cursor: pointer; padding: 6px;
 }
 .player-bar__controls button svg { width: 20px; height: 20px; fill: currentColor; }
 .player-bar__play {
-  width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--paper) !important;
+  width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--gold) !important;
   display: flex; align-items: center; justify-content: center;
 }
 
 /* ================= FOOTER ================= */
-footer { background: var(--ink); color: var(--paper); padding: 56px 0 90px; }
+footer { background: #08090a; color: var(--ink); padding: 56px 0 90px; border-top: 1px solid var(--line); }
 .footer-grid { display: grid; gap: 32px; grid-template-columns: 1fr; }
 @media (min-width: 760px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
 footer h4 { font-size: 1rem; text-transform: uppercase; margin-bottom: 12px; color: var(--gold); }
 footer a { text-decoration: none; }
 .footer-links { display: flex; flex-direction: column; gap: 8px; }
-.footer-links a { color: var(--paper); opacity: 0.85; }
+.footer-links a { color: var(--ink-soft); opacity: 0.85; }
 .footer-links a:hover { opacity: 1; color: var(--gold); }
 .footer-bottom {
-  margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line-on-ink);
+  margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line-subtle);
   font-size: 0.82rem; color: var(--faded); display: flex; flex-wrap: wrap; gap: 10px;
   justify-content: space-between;
 }
@@ -533,9 +542,9 @@ footer a { text-decoration: none; }
   font-family: var(--font-display); font-weight: 700; font-size: 0.7rem;
   text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 8px; border-radius: 2px;
 }
-.badge-status--released { background: var(--steel); color: var(--paper); }
-.badge-status--progress { background: var(--gold); color: var(--ink); }
-.badge-status--announced { background: transparent; border: 1.5px solid var(--ink); color: var(--ink); }
+.badge-status--released { background: var(--steel); color: var(--ink); }
+.badge-status--progress { background: var(--gold); color: #000; }
+.badge-status--announced { background: transparent; border: 1.5px solid var(--gold); color: var(--gold); }
 
   </style>
 </head>
@@ -719,7 +728,7 @@ footer a { text-decoration: none; }
       <div class="footer-grid">
         <div>
           <h4>JawsAtak47</h4>
-          <p style="color:rgba(239,234,217,0.8);max-width:40ch;">Emcee, writer, and independent creator. Part of a wider creative practice that also runs under the QuarkForce visual-art brand.</p>
+          <p style="color:var(--ink-soft);max-width:40ch;">Emcee, writer, and independent creator. Part of a wider creative practice that also runs under the QuarkForce visual-art brand.</p>
         </div>
         <div>
           <h4>Listen &amp; follow</h4>
@@ -770,22 +779,8 @@ footer a { text-decoration: none; }
   <script>
 /* ============================================================
    JAWSATAK47 — ARCHIVE DATA
-   ============================================================
-   Everything the site displays lives in this file as plain
-   JavaScript objects and arrays. To add a new release, video,
-   collaborator, artwork piece, or timeline event, copy an
-   existing entry in the matching array below, edit the fields,
-   and save. The rest of the site (grids, filters, search,
-   modals, timeline) reads from these arrays automatically —
-   no HTML editing required.
-
-   Anywhere you see a bracketed placeholder like [ADD BIO] or
-   [ADD RELEASE YEAR], replace it with the real information.
-   Leave placeholders in place rather than guessing — an
-   honest gap reads better than an invented fact.
    ============================================================ */
 
-/* ---------- SITE IDENTITY ---------- */
 const SITE = {
   artistName: "JawsAtak47",
   tagline: "Emcee. Writer. Independent creator.",
@@ -807,23 +802,11 @@ const SITE = {
   contact: "[ADD BOOKING / CONTACT EMAIL]",
 };
 
-/* ---------- FEATURED / CURRENT PROJECT ----------
-   Shown at the top of the homepage. Point this at whatever
-   release deserves the spotlight right now — swap the
-   `albumId` when priorities change. */
 const FEATURED = {
   albumId: "tony-sharks",
   eyebrow: "In the works",
 };
 
-/* ---------- DISCOGRAPHY ----------
-   type: "Album" | "EP" | "Single" | "Collaboration"
-   status: "Released" | "In Progress" | "Announced"
-   To add a release: copy an object below, give it a unique id
-   (lowercase, hyphenated), and fill in the fields. `tracklist`
-   is an array of track objects — use [ADD TRACK TITLE] for
-   unconfirmed songs so the count is right even before titles
-   are locked. */
 const ALBUMS = [
   {
     id: "seawalk-2",
@@ -832,13 +815,12 @@ const ALBUMS = [
     type: "Album",
     status: "Released",
     year: "[ADD RELEASE YEAR]",
-    cover: null, // path to cover art, e.g. "assets/covers/seawalk-2.jpg"
+    cover: null,
     producers: ["manideol"],
     features: [],
     trackCount: "[ADD TRACK COUNT]",
     tracklist: [
       { number: 1, title: "NightShark", featuring: [], producer: "manideol" },
-      // additional confirmed tracks go here as they're locked in
     ],
     story:
       "The sequel to the SeaWalk concept, produced in full with ManiDeol. [ADD PROJECT STORY / LINER NOTES]",
@@ -876,32 +858,8 @@ const ALBUMS = [
       bandcamp: "[ADD LINK]",
     },
   },
-
-  /* --- TEMPLATE: copy this block for the next release ---
-  {
-    id: "your-new-album-id",
-    title: "[ADD ALBUM TITLE]",
-    artist: "JawsAtak47",
-    type: "Album", // or "EP" / "Single" / "Collaboration"
-    status: "Announced",
-    year: "[ADD RELEASE YEAR]",
-    cover: null,
-    producers: ["producer-id"],
-    features: ["collaborator-id"],
-    trackCount: "[ADD TRACK COUNT]",
-    tracklist: [
-      { number: 1, title: "[ADD TRACK TITLE]", featuring: [], producer: "producer-id" },
-    ],
-    story: "[ADD PROJECT STORY / LINER NOTES]",
-    links: { spotify: "", youtube: "", bandcamp: "" },
-  },
-  --------------------------------------------------------- */
 ];
 
-/* ---------- COLLABORATORS ----------
-   People JawsAtak47 has recorded with (features, guest verses,
-   joint projects). Producers who ALSO appear on tracks as
-   vocalists can go in both this list and PRODUCERS. */
 const COLLABORATORS = [
   {
     id: "mistah-fab",
@@ -930,21 +888,8 @@ const COLLABORATORS = [
     projects: [],
     links: { spotify: "[ADD LINK]", instagram: "[ADD LINK]" },
   },
-
-  /* --- TEMPLATE ---
-  {
-    id: "new-collaborator-id",
-    name: "[ADD NAME]",
-    role: "Featured artist",
-    region: "[ADD REGION]",
-    bio: "[ADD BIO]",
-    projects: ["album-id"],
-    links: { spotify: "", instagram: "" },
-  },
-  ----------------- */
 ];
 
-/* ---------- PRODUCERS ---------- */
 const PRODUCERS = [
   {
     id: "manideol",
@@ -960,21 +905,8 @@ const PRODUCERS = [
     projects: ["tony-sharks"],
     links: { spotify: "[ADD LINK]", instagram: "[ADD LINK]" },
   },
-
-  /* --- TEMPLATE ---
-  {
-    id: "new-producer-id",
-    name: "[ADD NAME]",
-    bio: "[ADD BIO]",
-    projects: ["album-id"],
-    links: { spotify: "", instagram: "" },
-  },
-  ----------------- */
 ];
 
-/* ---------- MUSIC VIDEOS ----------
-   `embedUrl` accepts a YouTube/Vimeo embed link. Leave null
-   until a video exists — the card will show a placeholder. */
 const VIDEOS = [
   {
     id: "video-placeholder-1",
@@ -985,216 +917,51 @@ const VIDEOS = [
     thumbnail: null,
     embedUrl: null,
   },
-
-  /* --- TEMPLATE ---
-  {
-    id: "new-video-id",
-    title: "[ADD VIDEO TITLE]",
-    project: "album-id",
-    year: "[ADD YEAR]",
-    description: "[ADD DESCRIPTION]",
-    thumbnail: "assets/videos/thumb.jpg",
-    embedUrl: "https://www.youtube.com/embed/VIDEO_ID",
-  },
-  ----------------- */
 ];
 
-/* ---------- ARTWORK ----------
-   category: "Album Art" | "Illustration" | "Lettering" | "Graffiti" | "Painting"
-   Use `image: null` until real files are uploaded — the grid
-   renders a labeled placeholder tile in the meantime. */
 const ARTWORK = [
-  {
-    id: "art-1",
-    title: "[ADD ARTWORK TITLE]",
-    category: "Album Art",
-    related: "tony-sharks",
-    year: "[ADD YEAR]",
-    image: null,
-  },
-  {
-    id: "art-2",
-    title: "[ADD ARTWORK TITLE]",
-    category: "Album Art",
-    related: "seawalk-2",
-    year: "[ADD YEAR]",
-    image: null,
-  },
-  {
-    id: "art-3",
-    title: "[ADD ARTWORK TITLE]",
-    category: "Lettering",
-    related: null,
-    year: "[ADD YEAR]",
-    image: null,
-  },
-  {
-    id: "art-4",
-    title: "[ADD ARTWORK TITLE]",
-    category: "Graffiti",
-    related: null,
-    year: "[ADD YEAR]",
-    image: null,
-  },
-
-  /* --- TEMPLATE ---
-  {
-    id: "new-artwork-id",
-    title: "[ADD TITLE]",
-    category: "Album Art",
-    related: "album-id-or-null",
-    year: "[ADD YEAR]",
-    image: "assets/artwork/file.jpg",
-  },
-  ----------------- */
+  { id: "art-1", title: "[ADD ARTWORK TITLE]", category: "Album Art", related: "tony-sharks", year: "[ADD YEAR]", image: null },
+  { id: "art-2", title: "[ADD ARTWORK TITLE]", category: "Album Art", related: "seawalk-2", year: "[ADD YEAR]", image: null },
+  { id: "art-3", title: "[ADD ARTWORK TITLE]", category: "Lettering", related: null, year: "[ADD YEAR]", image: null },
+  { id: "art-4", title: "[ADD ARTWORK TITLE]", category: "Graffiti", related: null, year: "[ADD YEAR]", image: null },
 ];
 
-/* ---------- CAREER TIMELINE ----------
-   Ordered oldest to newest. `era` is a short section label,
-   `year` can be a specific year or a range string. */
 const TIMELINE = [
-  {
-    year: "c. 2004",
-    era: "Beginnings",
-    title: "First marks",
-    description:
-      "Early graffiti work — the starting point for two decades of visual and written craft. [ADD SPECIFIC DETAILS]",
-  },
-  {
-    year: "[ADD YEARS]",
-    era: "Lettering",
-    title: "Sign painting & gold leaf training",
-    description:
-      "Formal training in sign painting and gold leaf at LA Trade Tech under Doc Guthrie, Noel B. Webber, and Joby Carter — the discipline that connects the letterforms in graffiti to precise, hand-built craft.",
-  },
-  {
-    year: "[ADD YEAR]",
-    era: "Hip-hop",
-    title: "Recording begins",
-    description: "[ADD DETAILS ON WHEN RECORDING/WRITING VERSES STARTED]",
-  },
-  {
-    year: "[ADD YEAR]",
-    era: "Albums",
-    title: "SeaWalk 2",
-    description:
-      "Full-length project produced with ManiDeol. [ADD RELEASE CONTEXT]",
-  },
-  {
-    year: "Now",
-    era: "Current",
-    title: "Tony Sharks in progress",
-    description:
-      "A 7-track project with DJ Idea on the boards, featuring Bay Area voices including Mistah FAB.",
-  },
-  {
-    year: "Ongoing",
-    era: "Multidisciplinary",
-    title: "One practice, several languages",
-    description:
-      "Graffiti, fine art, lettering, and music running in parallel under two connected brands — QuarkForce for the visual universe, JawsAtak47 for the music.",
-  },
-  {
-    year: "Future",
-    era: "What's next",
-    title: "[ADD UPCOMING PROJECTS]",
-    description: "[ADD FUTURE PLANS]",
-  },
+  { year: "c. 2004", era: "Beginnings", title: "First marks", description: "Early graffiti work — the starting point for two decades of visual and written craft. [ADD SPECIFIC DETAILS]" },
+  { year: "[ADD YEARS]", era: "Lettering", title: "Sign painting & gold leaf training", description: "Formal training in sign painting and gold leaf at LA Trade Tech under Doc Guthrie, Noel B. Webber, and Joby Carter — the discipline that connects the letterforms in graffiti to precise, hand-built craft." },
+  { year: "[ADD YEAR]", era: "Hip-hop", title: "Recording begins", description: "[ADD DETAILS ON WHEN RECORDING/WRITING VERSES STARTED]" },
+  { year: "[ADD YEAR]", era: "Albums", title: "SeaWalk 2", description: "Full-length project produced with ManiDeol. [ADD RELEASE CONTEXT]" },
+  { year: "Now", era: "Current", title: "Tony Sharks in progress", description: "A 7-track project with DJ Idea on the boards, featuring Bay Area voices including Mistah FAB." },
+  { year: "Ongoing", era: "Multidisciplinary", title: "One practice, several languages", description: "Graffiti, fine art, lettering, and music running in parallel under two connected brands — QuarkForce for the visual universe, JawsAtak47 for the music." },
+  { year: "Future", era: "What's next", title: "[ADD UPCOMING PROJECTS]", description: "[ADD FUTURE PLANS]" },
 ];
 
-/* ---------- THE VAULT ----------
-   Behind-the-scenes material, promo experiments, demos, old
-   flyers — anything archival that doesn't fit the main
-   catalog. `kind` is a free-text label used as a stamp. */
 const VAULT = [
-  {
-    id: "vault-1",
-    kind: "Promo experiment",
-    title: "\u201cBanned from Neptune\u201d tabloid promo",
-    year: "[ADD YEAR]",
-    description:
-      "A tabloid-style promotional bit built for SeaWalk 2 — part of an organic content ladder that also included AI-generated visuals and a comedic PSA.",
-  },
-  {
-    id: "vault-2",
-    kind: "Promo video",
-    title: "SeaWalk 2 PSA",
-    year: "[ADD YEAR]",
-    description:
-      "A comedic public-service-style promo for SeaWalk 2, co-starring Captain.",
-  },
-  {
-    id: "vault-3",
-    kind: "Press kit",
-    title: "Live booking EPK",
-    year: "[ADD YEAR]",
-    description: "Electronic press kit produced for live booking inquiries.",
-  },
-
-  /* --- TEMPLATE ---
-  {
-    id: "new-vault-id",
-    kind: "Demo",
-    title: "[ADD TITLE]",
-    year: "[ADD YEAR]",
-    description: "[ADD DESCRIPTION]",
-  },
-  ----------------- */
+  { id: "vault-1", kind: "Promo experiment", title: "“Banned from Neptune” tabloid promo", year: "[ADD YEAR]", description: "A tabloid-style promotional bit built for SeaWalk 2 — part of an organic content ladder that also included AI-generated visuals and a comedic PSA." },
+  { id: "vault-2", kind: "Promo video", title: "SeaWalk 2 PSA", year: "[ADD YEAR]", description: "A comedic public-service-style promo for SeaWalk 2, co-starring Captain." },
+  { id: "vault-3", kind: "Press kit", title: "Live booking EPK", year: "[ADD YEAR]", description: "Electronic press kit produced for live booking inquiries." },
 ];
 
-/* ---------- BIO SECTIONS ----------
-   Rendered in order on the Story page. Each block is a
-   chapter — add more as the story is filled in. */
 const BIO = [
-  {
-    heading: "Where it starts",
-    body:
-      "JawsAtak47 has been making marks since roughly 2004, when graffiti was the entry point into a visual language that would eventually run in several directions at once. [ADD EARLY STORY DETAILS]",
-  },
-  {
-    heading: "Letters, formally",
-    body:
-      "That instinct for letterforms got a formal education at LA Trade Tech, training in sign painting and gold leaf under Doc Guthrie, Noel B. Webber, and Joby Carter. The precision of hand-lettering and the freedom of graffiti aren't opposites here — they're the same hand working at different speeds.",
-  },
-  {
-    heading: "Music as a parallel language",
-    body:
-      "Hip-hop runs alongside the visual work rather than behind it — writing verses is the same act as writing on a wall, just in a different material. [ADD DETAILS ON HOW MUSIC ENTERED THE PRACTICE]",
-  },
-  {
-    heading: "Where it's going",
-    body:
-      "Two connected brands carry the work forward: QuarkForce for the visual-art universe, and JawsAtak47 for the music. Current focus is Tony Sharks, a 7-track project with DJ Idea, following SeaWalk 2 with ManiDeol. [ADD CURRENT/FUTURE DIRECTION]",
-  },
+  { heading: "Where it starts", body: "JawsAtak47 has been making marks since roughly 2004, when graffiti was the entry point into a visual language that would eventually run in several directions at once. [ADD EARLY STORY DETAILS]" },
+  { heading: "Letters, formally", body: "That instinct for letterforms got a formal education at LA Trade Tech, training in sign painting and gold leaf under Doc Guthrie, Noel B. Webber, and Joby Carter. The precision of hand-lettering and the freedom of graffiti aren't opposites here — they're the same hand working at different speeds." },
+  { heading: "Music as a parallel language", body: "Hip-hop runs alongside the visual work rather than behind it — writing verses is the same act as writing on a wall, just in a different material. [ADD DETAILS ON HOW MUSIC ENTERED THE PRACTICE]" },
+  { heading: "Where it's going", body: "Two connected brands carry the work forward: QuarkForce for the visual-art universe, and JawsAtak47 for the music. Current focus is Tony Sharks, a 7-track project with DJ Idea, following SeaWalk 2 with ManiDeol. [ADD CURRENT/FUTURE DIRECTION]" },
 ];
-
   </script>
+
   <script>
 /* ============================================================
    JAWSATAK47 — APP LOGIC
-   Reads from the data arrays in data.js and renders every
-   section. No content lives in this file — if you're editing
-   copy, track titles, or credits, go to js/data.js instead.
    ============================================================ */
 
 (function () {
   "use strict";
 
-  /* ---------- helpers ---------- */
   const $ = (sel, ctx) => (ctx || document).querySelector(sel);
   const $$ = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
   const byId = (arr, id) => arr.find((item) => item.id === id);
 
-  const el = (tag, className, html) => {
-    const node = document.createElement(tag);
-    if (className) node.className = className;
-    if (html !== undefined) node.innerHTML = html;
-    return node;
-  };
-
-  // Deterministic placeholder color/pattern for cover art & artwork
-  // tiles when no real image exists yet, so the grid never shows a
-  // broken-image icon while assets are pending.
   const PLACEHOLDER_STYLES = ["cover-art--ink", "cover-art--brick", "cover-art--gold"];
   function placeholderClass(seed) {
     let hash = 0;
@@ -1224,9 +991,6 @@ const BIO = [
     return (ids || []).map((id) => (byId(list, id) || { name: id }).name);
   }
 
-  /* ==========================================================
-     NAV / MOBILE MENU
-     ========================================================== */
   function initNav() {
     const toggle = $(".nav-toggle");
     const menu = $(".mobile-menu");
@@ -1239,9 +1003,6 @@ const BIO = [
     $$("a", menu).forEach((a) => a.addEventListener("click", shut));
   }
 
-  /* ==========================================================
-     HERO / FEATURED PROJECT
-     ========================================================== */
   function renderFeatured() {
     const mount = $("#now-spinning");
     if (!mount) return;
@@ -1254,7 +1015,7 @@ const BIO = [
         <div>
           <div class="now-spinning__title">${album.title}</div>
           <div class="now-spinning__meta">${album.type} · ${namesFor(album.producers, PRODUCERS).join(", ") || "[ADD PRODUCER]"}</div>
-          <div class="now-spinning__meta">${statusBadge(album.status)}</div>
+          <div class="now-spinning__meta" style="margin-top:6px;">${statusBadge(album.status)}</div>
         </div>
       </div>
       <div class="now-spinning__cta">
@@ -1265,9 +1026,6 @@ const BIO = [
     });
   }
 
-  /* ==========================================================
-     DISCOGRAPHY
-     ========================================================== */
   let activeFilter = "ALL";
   let searchTerm = "";
 
@@ -1332,9 +1090,6 @@ const BIO = [
     }
   }
 
-  /* ==========================================================
-     ALBUM MODAL
-     ========================================================== */
   function openAlbumModal(albumId) {
     const album = byId(ALBUMS, albumId);
     if (!album) return;
@@ -1409,9 +1164,6 @@ const BIO = [
     );
   }
 
-  /* ==========================================================
-     COLLABORATORS + PRODUCERS
-     ========================================================== */
   function renderPeopleGrid(mountSelector, list, roleLabel, openFn) {
     const mount = $(mountSelector);
     if (!mount) return;
@@ -1473,9 +1225,6 @@ const BIO = [
     $$("[data-open-album]").forEach((c) => c.addEventListener("click", () => { closeModal(); openAlbumModal(c.dataset.openAlbum); }));
   }
 
-  /* ==========================================================
-     VIDEOS
-     ========================================================== */
   function renderVideos() {
     const mount = $("#video-grid");
     if (!mount) return;
@@ -1521,16 +1270,13 @@ const BIO = [
     `);
   }
 
-  /* ==========================================================
-     ARTWORK
-     ========================================================== */
   let artworkIndex = 0;
 
   function renderArtwork() {
     const mount = $("#art-grid");
     if (!mount) return;
     mount.innerHTML = ARTWORK.map((a, i) => {
-      const ar = (0.7 + (i % 3) * 0.25).toFixed(2); // varied aspect ratios for a lively grid
+      const ar = (0.7 + (i % 3) * 0.25).toFixed(2);
       return `
       <button class="art-tile" data-art-index="${i}">
         <div class="art-tile__frame ${a.image ? "" : placeholderClass(a.id)}" style="--ar:${ar};">
@@ -1576,9 +1322,6 @@ const BIO = [
     );
   }
 
-  /* ==========================================================
-     TIMELINE
-     ========================================================== */
   function renderTimeline() {
     const mount = $("#timeline");
     if (!mount) return;
@@ -1609,9 +1352,6 @@ const BIO = [
     }
   }
 
-  /* ==========================================================
-     VAULT
-     ========================================================== */
   function renderVault() {
     const mount = $("#vault-list");
     if (!mount) return;
@@ -1628,9 +1368,6 @@ const BIO = [
     ).join("");
   }
 
-  /* ==========================================================
-     BIO
-     ========================================================== */
   function renderBio() {
     const mount = $("#bio-chapters");
     if (!mount) return;
@@ -1639,9 +1376,6 @@ const BIO = [
     ).join("");
   }
 
-  /* ==========================================================
-     MODAL (shared)
-     ========================================================== */
   let lastFocused = null;
   function showModal(innerHTML) {
     const backdrop = $("#modal-backdrop");
@@ -1665,9 +1399,6 @@ const BIO = [
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
   }
 
-  /* ==========================================================
-     PLAYER BAR (UI stub — no audio wired up yet)
-     ========================================================== */
   let isPlaying = true;
   function setNowPlaying(track, project) {
     const bar = $("#player-bar");
@@ -1689,9 +1420,6 @@ const BIO = [
     });
   }
 
-  /* ==========================================================
-     FOOTER / HERO — driven by the SITE object in data.js
-     ========================================================== */
   function renderFooterYear() {
     const y = $("#footer-year");
     if (y) y.textContent = new Date().getFullYear();
@@ -1717,9 +1445,6 @@ const BIO = [
     }
   }
 
-  /* ==========================================================
-     INIT
-     ========================================================== */
   document.addEventListener("DOMContentLoaded", () => {
     initNav();
     initModal();
@@ -1738,7 +1463,6 @@ const BIO = [
     renderFooterYear();
   });
 })();
-
   </script>
 </body>
 </html>
