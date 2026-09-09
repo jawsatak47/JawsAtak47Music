@@ -465,16 +465,13 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
 }
 .tracklist { display: grid; gap: 0; border-top: 1px solid var(--line-subtle); }
 .track-row {
-  display: grid; grid-template-columns: 32px 1fr auto; gap: 10px; align-items: center;
+  display: grid; grid-template-columns: 32px 1fr; gap: 10px; align-items: center;
   padding: 10px 4px; border-bottom: 1px solid var(--line-subtle);
-  background: none; border-left: none; border-right: none; border-top: none;
-  cursor: pointer; text-align: left; width: 100%; color: inherit; font-family: var(--font-body);
+  background: none; text-align: left; width: 100%; color: inherit; font-family: var(--font-body);
 }
-.track-row:hover { background: #2d3238; }
 .track-row__num { font-family: var(--font-display); font-weight: 700; color: var(--gold); }
 .track-row__title { font-weight: 600; color: var(--ink); }
 .track-row__feat { color: var(--faded); font-size: 0.85rem; }
-.track-row__play { width: 22px; height: 22px; color: var(--gold); }
 .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
   font-family: var(--font-display); font-weight: 600; font-size: 0.85rem;
@@ -482,7 +479,7 @@ section { padding: clamp(56px, 9vw, 108px) 0; }
   background: none; cursor: pointer; color: var(--gold);
 }
 .chip:hover { background: var(--gold); color: #000; }
-.modal__links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.modal__links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
 
 /* ================= PLAYER BAR ================= */
 .player-bar {
@@ -1155,29 +1152,29 @@ const VIDEOS = [
     year: "2025",
     description: "Official visual release.",
     thumbnail: "sw2V1.png",
-    embedUrl: "https://youtu.be/umZboSXLGsM?si=Lqncjqv4UnP1RimD",
+    embedUrl: "https://www.youtube.com/embed/umZboSXLGsM",
   },
 ];
 
 /* ---------- MERCH DATA ---------- */
 const MERCH = [
   {
-    id: "m-1",
-    title: "QuarkZine Issue #6",
+    id: "QZ",
+    title: "QuarkZine Issue Patreon",
     category: "Zine",
-    price: "$12",
+    price: "$10",
     description: "Independent art zine featuring sketches, lettering studies, and behind-the-scenes concept art.",
     image: null,
-    url: "#"
+    url: "https://jawsatak47.github.io/QuarkZine-Homease/"
   },
   {
-    id: "m-2",
-    title: "JawsAtak Gold Leaf Print",
-    category: "Print",
-    price: "$45",
-    description: "Hand-signed screen print featuring custom lettering and gilded accent work.",
-    image: null,
-    url: "#"
+    id: "m101",
+    title: "SeaWalk2 merch",
+    category: "shirts, hoods",
+    price: "$25",
+    description: "shirts and hoods, Original artwork.",
+    image: "Group 2 copy 2.png",
+    url: "https://jawsatak47.myspreadshop.com/"
   },
   {
     id: "m-3",
@@ -1389,20 +1386,19 @@ const BIO = [
       .map((t) => {
         const feat = namesFor(t.featuring, COLLABORATORS);
         return `
-        <button class="track-row" data-track-title="${t.title}" data-track-project="${album.title}">
+        <div class="track-row">
           <span class="track-row__num">${String(t.number).padStart(2, "0")}</span>
           <span>
             <span class="track-row__title">${t.title}</span>
             ${feat.length ? `<div class="track-row__feat">feat. ${feat.join(", ")}</div>` : ""}
           </span>
-          <svg class="track-row__play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
-        </button>`;
+        </div>`;
       })
       .join("");
 
     const linksHTML = Object.entries(album.links || {})
       .filter(([, url]) => url && !url.startsWith("["))
-      .map(([platform, url]) => `<a class="btn" href="${url}" target="_blank" rel="noopener">${platform}</a>`)
+      .map(([platform, url]) => `<a class="btn btn--solid" href="${url}" target="_blank" rel="noopener">Listen on ${platform.charAt(0).toUpperCase() + platform.slice(1)}</a>`)
       .join("");
 
     showModal(`
@@ -1438,13 +1434,10 @@ const BIO = [
                 .join("")}</div></div>`
             : ""
         }
-        ${linksHTML ? `<div class="modal__links">${linksHTML}</div>` : ""}
+        ${linksHTML ? `<div class="modal__section"><h4>Stream &amp; Listen</h4><div class="modal__links">${linksHTML}</div></div>` : ""}
       </div>
     `);
 
-    $$("[data-track-title]").forEach((row) =>
-      row.addEventListener("click", () => setNowPlaying(row.dataset.trackTitle, row.dataset.trackProject))
-    );
     $$("[data-open-producer]").forEach((c) =>
       c.addEventListener("click", () => { closeModal(); openProducerModal(c.dataset.openProducer); })
     );
